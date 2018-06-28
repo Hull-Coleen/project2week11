@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
-const queries = require('./queries.js')
+//const queries = require('./queries.js')
 const url = require('url');
 const app = express();
 
@@ -14,7 +14,7 @@ app.get('/', (req,res)=> {
 app.get('/getPulse', function (req, res) {
     getPulse(req, res);
 });
-//app.get('/getPulse', queries.getPulse);
+
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 const pg = require('pg-promise')({});
 var conString = process.env.DATABASE_URL; // replace with heroku
