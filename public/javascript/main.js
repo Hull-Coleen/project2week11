@@ -11,8 +11,8 @@ function getPulse(e) {
           if ("error" in json) {
             output.innerText = json.error;
           } else {
-             //output.innerText = json[0].pulse;
-			output.innerText = JSON.stringify(json.rows);
+             output.innerText = json[0].pulse;
+			//output.innerText = JSON.stringify(json.rows);
           }
       })
 
