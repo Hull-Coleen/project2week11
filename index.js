@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
-//const queries = require('./queries.js')
+const queries = require('./queries.js')
 const url = require('url');
 const app = express();
 
