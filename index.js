@@ -22,7 +22,7 @@ function getPusle(req, res) {
   .get('/', (req, res) => res.render('pages/index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
   */
-const { Pool } = require('pg');
+/*const { Pool } = require('pg');
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
