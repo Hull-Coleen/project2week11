@@ -20,7 +20,7 @@ function getPulse(e) {
             output.innerText = json[0].pulse;
 			//output.innerText = JSON.stringify(json.rows);
          
-      })
+      }
 
 }
 
