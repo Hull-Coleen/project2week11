@@ -26,7 +26,7 @@ queries.getPulse = function (req, res) {
 function getPulse (req, res) {
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
-    var id = parseInt(query.input);
+    var id = parseInt(query.id);
     console.log(id);
     // query database
     db.any('SELECT pusle FROM person WHERE id = $1', [id]) // returns promise
