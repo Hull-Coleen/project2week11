@@ -1,4 +1,4 @@
-function getPulse(e) {
+/*function getPulse(e) {
     const id = document.querySelector('#input').value;
     fetch(`getPulse?id=${id}`)
       .then((res)=>{
@@ -15,4 +15,10 @@ function getPulse(e) {
           }
       })
 
-}
+}*/
+
+
+
+
+
+//lskdfh;alhjg;lakfgn;lakdfng;lsa
