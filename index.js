@@ -13,7 +13,8 @@ app.get('/', (req,res)=> {
 });
 app.get('/getPulse', getPulse);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
+function getPusle(req, res) {
+}
 /*express()
   .use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
