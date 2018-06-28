@@ -12,7 +12,7 @@ app.get('/', (req,res)=> {
     res.render('pages/index', {title: "home"})
 });
 app.get('/getPulse', function (req, res) {
-	queries.getPulse(req. res);
+    queries.getPulse;
 });
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 /*const pg = require('pg-promise')({});
