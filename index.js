@@ -11,7 +11,9 @@ app.set('view engine', 'ejs');
 app.get('/', (req,res)=> {
     res.render('pages/index', {title: "home"})
 });
-app.get('/pulse', queries.getPulse);
+app.get('/pulse', function(req, res)  {
+	queries.getPulse;
+});
 //app.get('/getPulse', function (req, res) {
   //  getPulse(req, res);
 //});
