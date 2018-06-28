@@ -1,10 +1,10 @@
 const pg = require('pg-promise')({});
-var conString = 'process.env.DATABASE_URL'; // replace with heroku
+//var conString = 'process.env.DATABASE_URL'; // replace with heroku
 const db = pg(conString);
 const url = require('url');
 
 var queries = {};
-queries.getPulse = function (req, res) {
+/*queries.getPulse = function (req, res) {
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
     var id = parseInt(query.id);
@@ -23,4 +23,4 @@ queries.getPulse = function (req, res) {
       })
     // display data on server for that id
     
-}
+}*/
