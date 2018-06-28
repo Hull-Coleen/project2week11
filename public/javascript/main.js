@@ -1,5 +1,5 @@
 function getPulse(e) {
-	console.log("getPulse function" + json);
+	console.log("getPulse function");
     const id = document.querySelector('#input').value;
     fetch(`getPulse?id=${id}`)
       .then((res)=>{
