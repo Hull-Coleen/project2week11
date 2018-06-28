@@ -4,15 +4,14 @@ function getPulse(e) {
     fetch(`getPulse?id=${id}`)
       .then((res)=>{
           return res.json()
-		  console.log("inside fetch" + json);
       })
       .then(json =>{
-
+          console.log("inside fetch" + json);
           const output = document.querySelector('#output');
           if ("error" in json) {
             output.innerText = json.error;
           } else {
-            output.innerText = json.pulse;
+            output.innerText = json[0].pulse;
           }
       })
 
