@@ -12,7 +12,7 @@ app.get('/', (req,res)=> {
     res.render('pages/index', {title: "home"})
 });
 app.get('/getPulse', function (req, res) {
-    getPulse;
+    getPulse(req.res);
 });
 //app.get('/getPulse', queries.getPulse);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
