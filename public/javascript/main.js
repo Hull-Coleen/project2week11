@@ -10,11 +10,18 @@ function getPulse(e) {
           const output = document.querySelector('#output');
           if ("error" in json) {
             output.innerText = json.error;
-          } else {
+          } /*else {
 			  
              output.innerText = json[0].pulse;
 			//output.innerText = JSON.stringify(json.rows);
-          }
+          }*/
+		  else {
+          var string = json.map((item)=>{
+            return item.pulse; 
+          })
+          string = string.join(", ");
+          output.innerText = string;
+        }
       })
 
 }
