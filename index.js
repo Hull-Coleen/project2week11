@@ -26,9 +26,13 @@ function getPulse(req, res) {
     console.log(id);
     // query database
     db.any('SELECT pulse FROM health WHERE person_id = $1', [id]) // returns promise
-      .then((results)=> {
+      .then((results)=> { 
+	  
         console.log(results)
         res.status(200)
+		if(results.length == 0)
+		  json({"error":"Person does not exist."});
+	    else 
            .json(results)
       })
       .catch((err)=> {
@@ -36,8 +40,7 @@ function getPulse(req, res) {
           res.status(400)
              .json({"error":"Person does not exist."})
       })
-	  if(json.length == 0)
-		  josn({"error":"Person does not exist."});
+	 
     // display data on server for that id
 }
 
