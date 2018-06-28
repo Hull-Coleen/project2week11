@@ -10,7 +10,7 @@ function getPulse(e) {
           if ("error" in json) {
             output.innerText = json.error;
           } else {
-            output.innerText = "json.pulse";
+            output.innerText = json.pulse;
           }
       })
 
