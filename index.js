@@ -1,7 +1,7 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
-const queries = require('queries.js')
+const queries = require('./queries.js')
 
 const app = express();
 
@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 app.get('/', (req,res)=> {
     res.render('pages/index', {title: "home"})
 });
-app.get('/getPulse', getPulse);
+//app.get('/getPulse', getPulse);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 function getPusle(req, res) {
 	var url_parts = url.parse(req.url, true);
