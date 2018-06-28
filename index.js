@@ -1,6 +1,6 @@
 const express = require('express')
 const path = require('path')
-const PORT = process.env.PORT || 5000
+//const PORT = process.env.PORT || 5000
 const queries = require('./queries.js')
 
 const app = express();
@@ -12,7 +12,7 @@ app.get('/', (req,res)=> {
     res.render('pages/index', {title: "home"})
 });
 app.get('/getPulse', queries.getPulse);
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
+//app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 /*express()
   .use(express.static(path.join(__dirname, 'public')))
