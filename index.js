@@ -11,19 +11,19 @@ app.set('view engine', 'ejs');
 app.get('/', (req,res)=> {
     res.render('pages/index', {title: "home"})
 });
-//app.get('/getPulse', function (req, res) {
-  //  queries.getPulse;
-//});
-app.get('/getPulse', queries.getPulse);
+app.get('/getPulse', function (req, res) {
+    getPulse;
+});
+//app.get('/getPulse', queries.getPulse);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-/*const pg = require('pg-promise')({});
+const pg = require('pg-promise')({});
 var conString = process.env.DATABASE_URL; // replace with heroku
 const db = pg(conString);
 const url = require('url')
 function getPusle(req, res) {
 	var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
-    var id = parseInt(query.input);
+    var id = parseInt(query.id);
     console.log(id);
     // query database
     db.any('SELECT pusle FROM person WHERE id = $1', [id]) // returns promise
@@ -39,7 +39,7 @@ function getPusle(req, res) {
       })
     // display data on server for that id
 }
-*/
+
 /*;
 var queries = {};*/
 /*queries.getPulse = function (req, res) {
