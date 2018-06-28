@@ -36,15 +36,25 @@ function getPulse(req, res) {
           res.status(400)
              .json({"error":"Person does not exist."})
       })
-	  const output = document.querySelector('#output');
+}
+function getPulse(e) {
+    const id = document.querySelector('#input').value;
+    fetch(`getPulse?id=${id}`)
+      .then((res)=>{
+          return res.json()
+		  console.log("getPulse function" + json);
+      })
+      .then(json =>{
+
+          const output = document.querySelector('#output');
           if ("error" in json) {
             output.innerText = json.error;
           } else {
             output.innerText = json.pulse;
           }
-    // display data on server for that id
-}
+      })
 
+}
 /*;
 var queries = {};*/
 /*queries.getPulse = function (req, res) {
