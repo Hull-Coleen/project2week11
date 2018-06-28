@@ -36,6 +36,8 @@ function getPulse(req, res) {
           res.status(400)
              .json({"error":"Person does not exist."})
       })
+	  if(json.length == 0)
+		  josn({"error":"Person does not exist."});
     // display data on server for that id
 }
 
