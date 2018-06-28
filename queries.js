@@ -2,7 +2,7 @@ const pg = require('pg-promise')({});
 var conString = 'process.env.DATABASE_URL'; // replace with heroku
 const db = pg(conString);
 const url = require('url');
-
+var conString = 'postgres://wocsoefuuvwfwr:b5159bcf0313c2acebb96c9533a0ac50176c31a7cd86a68c53f653fb59d4719c@ec2-54-227-247-225.compute-1.amazonaws.com:5432/dctnhoa7miang7';
 var queries = {};
 queries.getPulse = function (req, res) {
     var url_parts = url.parse(req.url, true);
