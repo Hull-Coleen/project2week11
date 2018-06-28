@@ -11,7 +11,7 @@ app.set('view engine', 'ejs');
 app.get('/', (req,res)=> {
     res.render('pages/index', {title: "home"})
 });
-//app.get('/getPulse', queries.getPulse);
+app.get('/getPulse', queries.getPulse);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 /*express()
