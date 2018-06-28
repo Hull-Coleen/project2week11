@@ -12,7 +12,7 @@ app.get('/', (req,res)=> {
     res.render('pages/index', {title: "home"})
 });
 app.get('/getPulse', function (req, res) {
-    getPulse(req.res);
+    getPulse(req, res);
 });
 //app.get('/getPulse', queries.getPulse);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
@@ -21,8 +21,8 @@ var conString = process.env.DATABASE_URL; // replace with heroku
 const db = pg(conString);
 function getPulse(req, res) {
 	var url_parts = url.parse(req.url, true);
-    var query = url_parts.query;
-    var id = parseInt(query.id);
+    //var query = url_parts.query;
+    var id = parseInt(url_parts.query.id);
     console.log(id);
     // query database
     db.any('SELECT pusle FROM person WHERE id = $1', [id]) // returns promise
