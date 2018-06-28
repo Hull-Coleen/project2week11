@@ -4,7 +4,7 @@ function getPulse(e) {
     fetch(`getPulse?id=${id}`)
       .then((res)=>{
           return res.json()
-		  console.log("getPulse function" + json);
+		  console.log("inside fetch" + json);
       })
       .then(json =>{
 
