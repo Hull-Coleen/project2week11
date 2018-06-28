@@ -25,7 +25,7 @@ function getPulse(req, res) {
     var id = parseInt(url_parts.query.id);
     console.log(id);
     // query database
-    db.any('SELECT pulse FROM person WHERE id = $1', [id]) // returns promise
+    db.any('SELECT pulse FROM health WHERE person_id = $1', [id]) // returns promise
       .then((results)=> {
         console.log(results)
         res.status(200)
