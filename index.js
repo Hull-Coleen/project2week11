@@ -37,7 +37,7 @@ function getPulse(req, res) {
              .json({"error":"Person does not exist."})
       })
 }
-function pulse(e) {
+/*function pulse(e) {
     const id = document.querySelector('#input').value;
     fetch(`getPulse?id=${id}`)
       .then((res)=>{
@@ -54,7 +54,7 @@ function pulse(e) {
           }
       })
 
-}
+}*/
 /*;
 var queries = {};*/
 /*queries.getPulse = function (req, res) {
