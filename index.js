@@ -12,7 +12,7 @@ app.get('/', (req,res)=> {
     res.render('pages/index', {title: "home"})
 });
 app.get('/pulse', function(req, res)  {
-	queries.getPulse;
+	queries.getPulse(req, res);
 });
 //app.get('/getPulse', function (req, res) {
   //  getPulse(req, res);
