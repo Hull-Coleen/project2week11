@@ -30,8 +30,6 @@ function getPulse(req, res) {
         console.log(results)
         res.status(200)
            .json(results)
-		   if(.json.length == 0)
-		  .json({"error":"Person does not exist."}
       })
       .catch((err)=> {
           console.log(err)
