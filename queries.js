@@ -6,26 +6,6 @@ var queries = {};
 queries.getPulse = function (req, res) {
     var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
-    var id = parseInt(query.input);
-    console.log(id);
-    // query database
-    db.any('SELECT pusle FROM person WHERE id = $1', [id]) // returns promise
-      .then((results)=> {
-        console.log(results)
-        res.status(200)
-           .json(results)
-      })
-      .catch((err)=> {
-          console.log(err)
-          res.status(400)
-             .json({"error":"Person does not exist."})
-      })
-    // display data on server for that id
-    
-}
-/*function getPulse (req, res) {
-    var url_parts = url.parse(req.url, true);
-    var query = url_parts.query;
     var id = parseInt(query.id);
     console.log(id);
     // query database
@@ -42,4 +22,4 @@ queries.getPulse = function (req, res) {
       })
     // display data on server for that id
     
-}*/
+}
