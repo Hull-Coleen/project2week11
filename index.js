@@ -4,7 +4,9 @@ const PORT = process.env.PORT || 5000
 const queries = require('./queries.js')
 const url = require('url');
 const app = express();
-
+const pg = require('pg-promise')({});
+var conString = process.env.DATABASE_URL; // replace with heroku
+const db = pg(conString);
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -14,14 +16,12 @@ app.get('/', (req,res)=> {
 //app.get('/pulse', function(req, res)  {
 	//queries.getPulse;
 //});
-app.get('/getPulse', function (req, res) {
-    getPulse(req, res);
-});
-
+//app.get('/getPulse', function (req, res) {
+  //  getPulse(req, res);
+//});
+app.get('/getPulse', getPulse);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
-const pg = require('pg-promise')({});
-var conString = process.env.DATABASE_URL; // replace with heroku
-const db = pg(conString);
+
 function getPulse(req, res) {
 	var url_parts = url.parse(req.url, true);
     //var query = url_parts.query;
