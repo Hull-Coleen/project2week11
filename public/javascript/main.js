@@ -11,13 +11,13 @@ function getPulse(e) {
           if ("error" in json) {
             output.innerText = json.error;
           } else {
-          var string = json.map((item)=>{
-            return item.child; 
-          })
-          string = string.join(", ");
-          output.innerText = string;
-        }
-            // output.innerText = json[0].pulse;
+         // var string = json.map((item)=>{
+           // return item.child; 
+          //})
+          //string = string.join(", ");
+          //output.innerText = string;
+        //}
+            output.innerText = json[0].pulse;
 			//output.innerText = JSON.stringify(json.rows);
          
       })
