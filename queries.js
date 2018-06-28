@@ -9,7 +9,7 @@ queries.getPulse = function (req, res) {
     var id = parseInt(query.id);
     console.log(id);
     // query database
-    db.any('SELECT pusle FROM person WHERE id = $1', [id]) // returns promise
+    db.any('SELECT pulse FROM health WHERE person_id = $1', [id]) // returns promise
       .then((results)=> {
         console.log(results)
         res.status(200)
@@ -20,6 +20,5 @@ queries.getPulse = function (req, res) {
           res.status(400)
              .json({"error":"Person does not exist."})
       })
-    // display data on server for that id
     
 }
