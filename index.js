@@ -19,7 +19,6 @@ app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 const pg = require('pg-promise')({});
 var conString = process.env.DATABASE_URL; // replace with heroku
 const db = pg(conString);
-const url = require('url')
 function getPulse(req, res) {
 	var url_parts = url.parse(req.url, true);
     var query = url_parts.query;
