@@ -46,7 +46,7 @@ function exercise(e) {
 		  else {
           var string = json.map((item)=>{
 			test = item.exercise + " " + item.exercise_time;
-            return item.exercise; 
+            return test; 
           })
           string = string.join(", ");
           output.innerText = string;
