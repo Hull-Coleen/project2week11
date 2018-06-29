@@ -10,11 +10,7 @@ function getPulse(e) {
           const output = document.querySelector('#output');
           if ("error" in json) {
             output.innerText = json.error;
-          } /*else {
-			  
-             output.innerText = json[0].pulse;
-			//output.innerText = JSON.stringify(json.rows);
-          }*/
+          } 
 		  else {
           var string = json.map((item)=>{
             return item.pulse; 
@@ -38,11 +34,7 @@ function exercise(e) {
           const output = document.querySelector('#output');
           if ("error" in json) {
             output.innerText = json.error;
-          } /*else {
-			  
-             output.innerText = json[0].pulse;
-			//output.innerText = JSON.stringify(json.rows);
-          }*/
+          }
 		  
 		  else {
           var string = json.map((item)=>{
@@ -67,17 +59,33 @@ function weight(e) {
           const output = document.querySelector('#output');
           if ("error" in json) {
             output.innerText = json.error;
-          } /*else {
-			  
-             output.innerText = json[0].pulse;
-			//output.innerText = JSON.stringify(json.rows);
-          }*/
+          } 
 		  else {
           var string = json.map((item)=>{
             return item.weight; 
           })
           string = string.join(", ");
           output.innerText = string;
+        }
+      })
+
+}
+function getUser(e) {
+	console.log("getweight function");
+    const name = document.querySelector('#name').value;
+	const pass = document.querySelector('#pass').value;
+    fetch(`getuser?name=${name}&pass=${pass}`)
+      .then((res)=>{
+          return res.json()
+      })
+      .then(json =>{
+          console.log("inside fetch" + json);
+          const output = document.querySelector('#output');
+          if ("error" in json) {
+            output.innerText = json.error;
+          } 
+		  else {
+          output.innerText = json.user_name;
         }
       })
 

@@ -77,4 +77,23 @@ function getWeight(req, res) {
              .json({"error":"Person does not exist."})
       })
 }
+function getUser(req, res) {
+	var url_parts = url.parse(req.url, true);
+    var name = (url_parts.query.name);
+	var pass = (url_parts.query.pass);
+    console.log(name);
+	console.log(pass);
+    // query database
+    db.one('SELECT user_name FROM person WHERE name = $1 AND password = $2', [name, pass]) // returns promise
+      .then((results)=> {
+        console.log(results)
+        res.status(200)
+           .json(results)
+      })
+      .catch((err)=> {
+          console.log(err)
+          res.status(400)
+             .json({"error":"Person does not exist."})
+      })
+}
 
