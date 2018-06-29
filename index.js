@@ -24,6 +24,7 @@ app.get('/', (req,res)=> {
 app.get('/getPulse', getPulse);
 app.get('/getExercise', getExercise);
 app.get('/getWeight', getWeight);
+app.get('/getUser', getUser);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 function getPulse(req, res) {
