@@ -22,6 +22,8 @@ app.get('/', (req,res)=> {
   //  getPulse(req, res);
 //});
 app.get('/getPulse', getPulse);
+app.get('/getExercise', getExercise);
+app.get('/getWeight', getWeight);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 function getPulse(req, res) {
@@ -30,6 +32,40 @@ function getPulse(req, res) {
     console.log(id);
     // query database
     db.any('SELECT pulse FROM health WHERE person_id = $1', [id]) // returns promise
+      .then((results)=> {
+        console.log(results)
+        res.status(200)
+           .json(results)
+      })
+      .catch((err)=> {
+          console.log(err)
+          res.status(400)
+             .json({"error":"Person does not exist."})
+      })
+}
+function getExercise(req, res) {
+	var url_parts = url.parse(req.url, true);
+    var id = parseInt(url_parts.query.id);
+    console.log(id);
+    // query database
+    db.any('SELECT exercise, exercise_time FROM health WHERE person_id = $1', [id]) // returns promise
+      .then((results)=> {
+        console.log(results)
+        res.status(200)
+           .json(results)
+      })
+      .catch((err)=> {
+          console.log(err)
+          res.status(400)
+             .json({"error":"Person does not exist."})
+      })
+}
+function getWeight(req, res) {
+	var url_parts = url.parse(req.url, true);
+    var id = parseInt(url_parts.query.id);
+    console.log(id);
+    // query database
+    db.any('SELECT weight FROM health WHERE person_id = $1', [id]) // returns promise
       .then((results)=> {
         console.log(results)
         res.status(200)
