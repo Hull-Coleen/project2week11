@@ -26,7 +26,7 @@ function getPulse(e) {
 
 }
 function exercise(e) {
-	console.log("getPulse function");
+	console.log("getexercise function");
     const id = document.querySelector('#input').value;
     fetch(`getExercise?id=${id}`)
       .then((res)=>{
@@ -42,8 +42,10 @@ function exercise(e) {
              output.innerText = json[0].pulse;
 			//output.innerText = JSON.stringify(json.rows);
           }*/
+		  var test = "";
 		  else {
           var string = json.map((item)=>{
+			test = item.exercise + " " + item.exercise_time;
             return item.exercise; 
           })
           string = string.join(", ");
@@ -53,7 +55,7 @@ function exercise(e) {
 
 }
 function weight(e) {
-	console.log("getPulse function");
+	console.log("getweight function");
     const id = document.querySelector('#input').value;
     fetch(`getWeight?id=${id}`)
       .then((res)=>{
