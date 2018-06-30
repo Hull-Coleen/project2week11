@@ -103,8 +103,8 @@ function getUserName(req, res) {
     //var name = (url_parts.query.name);
 	
 	//var pass = (url_parts.query.pass);
-	var name = reuest.body.name;
-	var pass =request.body.pass;
+	var name = req.body.name;
+	var pass =req.body.pass;
     console.log(name);
 	console.log(pass);
     // query database
