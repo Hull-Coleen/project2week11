@@ -105,8 +105,8 @@ function insert(e) {
       .then(json =>{
           console.log("inside fetch");
           const output = document.querySelector('#output');
-          if ("error" in json) {
-            output.innerText = json.error;
+          if (err) {
+            output.innerText = "Error inserting data";
           } 
 		  else {
           //output.innerText = json.user_name;
