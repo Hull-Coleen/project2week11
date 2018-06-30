@@ -139,10 +139,10 @@ function insertData(req, res) {
     // query database
     db.one('INSERT INTO health (person_id, exercise, exercise_time, weight, pulse, day_of_input) VALUES ($1, $2, $3, $4, $5, $6)', 
 	[id, exercise, time, weight, pulse, date]) // returns promise
-      .then((results)=> {
-        console.log(results)
+      .then(()=> {
+        console.log()
         res.status(200)
-           .json(results)
+           .json()
       })
       .catch((err)=> {
           console.log(err)

@@ -109,7 +109,7 @@ function insert(e) {
             output.innerText = json.error;
           } 
 		  else {
-          output.innerText = json.user_name;
+          //output.innerText = json.user_name;
         }
       })
 
