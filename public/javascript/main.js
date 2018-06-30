@@ -103,7 +103,7 @@ function insert(e) {
           //return res.json()
       })
       .then(json =>{
-          console.log("inside fetch" + json);
+          console.log("inside fetch");
           const output = document.querySelector('#output');
           if ("error" in json) {
             output.innerText = json.error;
