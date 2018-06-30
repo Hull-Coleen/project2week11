@@ -133,18 +133,17 @@ function insertData(req, res) {
     var exercise = (url_parts.query.exercise);
 	var time = (url_parts.query.time);
 	var weight = (url_parts.query.weight);
-	//var pulse = (url_parts.query.pulse);
-	//var date = (url_parts.query.date);
+	var pulse = (url_parts.query.pulse);
+	var date = (url_parts.query.date);
     
     // query database
-	db.one('INSERT INTO health (person_id, exercise, exercise_time, weight) VALUES ($1, $2, $3, $4)', 
-	[id, exercise, time, weight])
-    //db.one('INSERT INTO health (person_id, exercise, exercise_time, weight, pulse, day_of_input) VALUES ($1, $2, $3, $4, $5, $6)', 
-	//[id, exercise, time, weight, pulse, date]) // returns promise
-      .then(()=> {
-        console.log("insert function")
+	
+    const query = db.one('INSERT INTO health (person_id, exercise, exercise_time, weight, pulse, day_of_input) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id', 
+	[id, exercise, time, weight, pulse, date]) // returns promise
+      .then((query)=> {
+        console.log("insert function" + query)
         res.status(200)
-           .json({"message":"Data was inserted"})
+           .json(query)
       })
       .catch((err)=> {
           console.log(err)
