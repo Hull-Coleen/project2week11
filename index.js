@@ -3,7 +3,7 @@ const path = require('path')
 const PORT = process.env.PORT || 5000
 const queries = require('./queries.js')
 const url = require('url');
-
+var bodyParser = require('body-parser')
 const pg = require('pg-promise')({});
 var conString = process.env.DATABASE_URL; // replace with heroku
 const db = pg(conString);
