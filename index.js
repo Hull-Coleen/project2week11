@@ -8,7 +8,13 @@ const pg = require('pg-promise')({});
 var conString = process.env.DATABASE_URL; // replace with heroku
 const db = pg(conString);
 const app = express();
+// accept url encoded
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
+// accept json 
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -104,7 +110,7 @@ function getUserName(req, res) {
 	
 	//var pass = (url_parts.query.pass);
 	var name = req.body.name;
-	var pass =req.body.pass;
+	var pass = req.body.pass;
     console.log(name);
 	console.log(pass);
     // query database
