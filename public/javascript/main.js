@@ -100,7 +100,7 @@ function insert(e) {
 	const date = document.querySelector('#date').value;
     fetch(`insert?id=${id}&exercise=${exercise}&time=${time}&weight=${weight}&pulse=${pulse}&date=${date}`)
       .then((res)=>{
-          return res.json()
+          //return res.json()
       })
       .then(json =>{
           console.log("inside fetch" + json);
