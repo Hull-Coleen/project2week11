@@ -7,8 +7,13 @@
 <body>
 
  <h1>Home Page</h1>
- Name: <input type="name" class="name" id="name"></input><br>
+ 
+ <form method="post" action="/signin">
+ User Name: <input type="name" class="name" id="name"></input><br>
  Password: <input type="password" class="pass" id="pass"></input><br>
+ <input type="submit" value="Enter">
+ </form>
+ 
  <input type="number" class="input" id="input"></input>
  <button onclick='getPulse()'>Get Pulse</button>
  <button onclick='exercise()'>Get Exercise</button>
