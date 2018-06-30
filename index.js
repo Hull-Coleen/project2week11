@@ -142,7 +142,7 @@ function insertData(req, res) {
       .then(()=> {
         console.log()
         res.status(200)
-           .json()
+           //.json()
       })
       .catch((err)=> {
           console.log(err)
