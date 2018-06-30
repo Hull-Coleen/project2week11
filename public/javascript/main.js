@@ -105,7 +105,12 @@ function insert(e) {
       })
 	  .then(json =>{
           const output = document.querySelector('#output');
-		  output.innerText = "Error entering data";
+		  if ("error" in json) {
+            output.innerText = json.error;
+          } 
+		    else {
+          output.innerText = json.id;
+        }
 		  
       })
 
