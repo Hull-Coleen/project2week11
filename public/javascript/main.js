@@ -90,5 +90,25 @@ function getUser(e) {
       })
 
 }
+function getUserName(e) {
+	console.log("signin function");
+    const name = document.querySelector('#name').value;
+	const pass = document.querySelector('#pass').value;
+    fetch(`signin`)
+      .then((res)=>{
+          return res.json()
+      })
+      .then(json =>{
+          console.log("inside fetch" + json);
+          const output = document.querySelector('#output');
+          if ("error" in json) {
+            output.innerText = json.error;
+          } 
+		  else {
+          output.innerText = json.user_name;
+        }
+      })
+
+}
 
 
