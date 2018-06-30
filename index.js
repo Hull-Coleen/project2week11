@@ -140,9 +140,9 @@ function insertData(req, res) {
     db.one('INSERT INTO health (person_id, exercise, exercise_time, weight, pulse, day_of_input) VALUES ($1, $2, $3, $4, $5, $6)', 
 	[id, exercise, time, weight, pulse, date]) // returns promise
       .then(()=> {
-        console.log()
+        console.log("insert function")
         res.status(200)
-           //.json()
+           .json({"message":"Data was inserted"})
       })
       .catch((err)=> {
           console.log(err)

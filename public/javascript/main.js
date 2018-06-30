@@ -99,8 +99,8 @@ function insert(e) {
 	const pulse = document.querySelector('#pulse').value;
 	const date = document.querySelector('#date').value;
     fetch(`insert?id=${id}&exercise=${exercise}&time=${time}&weight=${weight}&pulse=${pulse}&date=${date}`)
-      .then(()=>{
-          //return res.json()
+      .then((res)=>{
+          return res.json()
       })
 	  .then(json =>{
           const output = document.querySelector('#output');
