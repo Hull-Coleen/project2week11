@@ -147,7 +147,7 @@ function insertData(req, res) {
       .catch((err)=> {
           console.log(err)
           res.status(400)
-             .json({"error":"Person does not exist."})
+             .json({"error":"could not insert data."})
       })
 }
 

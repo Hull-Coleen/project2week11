@@ -99,18 +99,13 @@ function insert(e) {
 	const pulse = document.querySelector('#pulse').value;
 	const date = document.querySelector('#date').value;
     fetch(`insert?id=${id}&exercise=${exercise}&time=${time}&weight=${weight}&pulse=${pulse}&date=${date}`)
-      .then((res)=>{
+      .then(()=>{
           //return res.json()
       })
-      .then(json =>{
-          console.log("inside fetch");
+	  .then(json =>{
           const output = document.querySelector('#output');
-          if (err) {
-            output.innerText = "Error inserting data";
-          } 
-		  else {
-          //output.innerText = json.user_name;
-        }
+		  output.innerText = "Error entering data";
+		  
       })
 
 }
