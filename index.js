@@ -32,6 +32,7 @@ app.get('/getExercise', getExercise);
 app.get('/getWeight', getWeight);
 app.get('/getUser', getUser);
 app.post('/signin', getUserName);
+app.get('/insert', inserData);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 function getPulse(req, res) {
@@ -115,6 +116,29 @@ function getUserName(req, res) {
 	console.log(pass);
     // query database
     db.one('SELECT user_name FROM person WHERE name = $1 AND password = $2', [name, pass]) // returns promise
+      .then((results)=> {
+        console.log(results)
+        res.status(200)
+           .json(results)
+      })
+      .catch((err)=> {
+          console.log(err)
+          res.status(400)
+             .json({"error":"Person does not exist."})
+      })
+}
+function insertData(req, res) {
+	var url_parts = url.parse(req.url, true);
+	var id = (url_parts.query.id);
+    var exercise = (url_parts.query.exercise);
+	var time = (url_parts.query.time);
+	var weight = (url_parts.query.weight);
+	var pulse = (url_parts.query.pulse);
+	var date = (url_parts.query.date);
+    
+    // query database
+    db.one('INSERT INTO health (person_id, exercise, exercise_time, weight, pulse, day_of_input) VALUES ($1, $2, $3, $4, $5, $6)', 
+	[id, exercise, time, weight, pulse, date]) // returns promise
       .then((results)=> {
         console.log(results)
         res.status(200)
