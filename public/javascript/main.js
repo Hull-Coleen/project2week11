@@ -96,9 +96,10 @@ function insert(e) {
 	const exercise = document.querySelector('#exercise').value;
 	const time = document.querySelector('#time').value;
 	const weight = document.querySelector('#weight').value;
-	const pulse = document.querySelector('#pulse').value;
-	const date = document.querySelector('#date').value;
-    fetch(`insert?id=${id}&exercise=${exercise}&time=${time}&weight=${weight}&pulse=${pulse}&date=${date}`)
+	//const pulse = document.querySelector('#pulse').value;
+	//const date = document.querySelector('#date').value;
+	fetch(`insert?id=${id}&exercise=${exercise}&time=${time}&weight=${weight}`)
+    //fetch(`insert?id=${id}&exercise=${exercise}&time=${time}&weight=${weight}&pulse=${pulse}&date=${date}`)
       .then((res)=>{
           return res.json()
       })
