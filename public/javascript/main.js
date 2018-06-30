@@ -98,7 +98,7 @@ function insert(e) {
 	const weight = document.querySelector('#weight').value;
 	const pulse = document.querySelector('#pulse').value;
 	const date = document.querySelector('#date').value;
-    fetch(`insert?id=${id}&exercise=${exercise}&time=${time}&weight=${weight}&pulse=${date}&t=${date}`)
+    fetch(`insert?id=${id}&exercise=${exercise}&time=${time}&weight=${weight}&pulse=${pulse}&date=${date}`)
       .then((res)=>{
           return res.json()
       })
