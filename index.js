@@ -150,10 +150,13 @@ function insertData(req, res) {
       })
 }
 function createUser(req, res) {
-	var url_parts = url.parse(req.url, true);
+	/*var url_parts = url.parse(req.url, true);
 	var name = (url_parts.name1);
     var pass = (url_parts.query.pass1);
-	var username = (url_parts.query.username);
+	var username = (url_parts.query.username);*/
+	var name = req.body.name1;
+	var pass = req.body.pass1;
+	var pass = req.body.username;
     
     // query database
 	
