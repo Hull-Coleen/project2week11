@@ -117,7 +117,7 @@ function insert(e) {
 }
 function createUser(e) {
 	console.log("insert function");
-    const id = document.querySelector('name1').value;
+    const id = document.querySelector('#name1').value;
 	const exercise = document.querySelector('#pass1').value;
 	const time = document.querySelector('#username').value;
 	
