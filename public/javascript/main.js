@@ -115,6 +115,28 @@ function insert(e) {
       })
 
 }
+function createUser(e) {
+	console.log("insert function");
+    const id = document.querySelector('name1').value;
+	const exercise = document.querySelector('#pass1').value;
+	const time = document.querySelector('#username').value;
+	
+    fetch(`creatUser`)
+      .then((res)=>{
+          return res.json()
+      })
+	  .then(json =>{
+          const output = document.querySelector('#output');
+		  if ("error" in json) {
+            output.innerText = json.error;
+          } 
+		    else {
+          output.innerText = json.id;
+        }
+		  
+      })
+
+}
 function getUserName(e) {
 	console.log("signin function");
     const name = document.querySelector('#name').value;
