@@ -121,7 +121,7 @@ function createUser(e) {
 	const exercise = document.querySelector('#pass1').value;
 	const time = document.querySelector('#username').value;
 	
-    fetch(`creatUser`)
+    fetch(`createUser`)
       .then((res)=>{
           return res.json()
       })
