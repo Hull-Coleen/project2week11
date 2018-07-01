@@ -33,6 +33,7 @@ app.get('/getWeight', getWeight);
 app.get('/getUser', getUser);
 app.post('/signin', getUserName);
 app.get('/insert', insertData);
+app.post('/createUser', createUser);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 function getPulse(req, res) {
@@ -106,10 +107,7 @@ function getUser(req, res) {
       })
 }
 function getUserName(req, res) {
-	//var url_parts = url.parse(req.url, true);
-    //var name = (url_parts.query.name);
-	
-	//var pass = (url_parts.query.pass);
+
 	var name = req.body.name;
 	var pass = req.body.pass;
     console.log(name);
@@ -151,4 +149,24 @@ function insertData(req, res) {
              .json({"error":"could not insert data."})
       })
 }
-
+function createUser(req, res) {
+	var url_parts = url.parse(req.url, true);
+	var name = (url_parts.name1);
+    var pass = (url_parts.query.pass1);
+	var username = (url_parts.query.username);
+    
+    // query database
+	
+    const query = db.one('INSERT INTO person (name, password, user_name) VALUES ($1, $2, $3) RETURNING id',
+	[name1, pass1, username]) // returns promise
+      .then((query)=> {
+        console.log("insert function person" + query)
+        res.status(200)
+           .json(query)
+      })
+      .catch((err)=> {
+          console.log(err)
+          res.status(400)
+             .json({"error":"could not insert data."})
+      })
+}
