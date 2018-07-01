@@ -156,12 +156,12 @@ function createUser(req, res) {
 	var username = (url_parts.query.username);*/
 	var name = req.body.name1;
 	var pass = req.body.pass1;
-	var pass = req.body.username;
+	var username = req.body.username;
     
     // query database
 	
     const query = db.one('INSERT INTO person (name, password, user_name) VALUES ($1, $2, $3) RETURNING id',
-	[name1, pass1, username]) // returns promise
+	[name, pass, username]) // returns promise
       .then((query)=> {
         console.log("insert function person" + query)
         res.status(200)
