@@ -9,6 +9,7 @@ var conString = process.env.DATABASE_URL; // replace with heroku
 const db = pg(conString);
 const app = express();
 // accept url encoded
+var id = 0;
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -21,12 +22,7 @@ app.set('view engine', 'ejs');
 app.get('/', (req,res)=> {
     res.render('pages/index', {title: "home"})
 });
-//app.get('/pulse', function(req, res)  {
-	//queries.getPulse;
-//});
-//app.get('/getPulse', function (req, res) {
-  //  getPulse(req, res);
-//});
+
 app.get('/getPulse', getPulse);
 app.get('/getExercise', getExercise);
 app.get('/getWeight', getWeight);
@@ -150,10 +146,6 @@ function insertData(req, res) {
       })
 }
 function createUser(req, res) {
-	/*var url_parts = url.parse(req.url, true);
-	var name = (url_parts.name1);
-    var pass = (url_parts.query.pass1);
-	var username = (url_parts.query.username);*/
 	var name = req.body.name1;
 	var pass = req.body.pass1;
 	var username = req.body.username;
@@ -165,11 +157,12 @@ function createUser(req, res) {
       .then((query)=> {
         console.log("insert function person" + query)
         res.status(200)
-           .json(query)
+           //.json(query)
+		   id = query.id
       })
       .catch((err)=> {
           console.log(err)
           res.status(400)
-             .json({"error":"could not insert data."})
+             .json({"error":"could not Create user account"})
       })
 }
