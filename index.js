@@ -5,7 +5,7 @@ const queries = require('./queries.js')
 const url = require('url');
 var bodyParser = require('body-parser')
 const pg = require('pg-promise')({});
-var conString = process.env.DATABASE_URL; // replace with heroku
+var conString = process.env.DATABASE_URL || "postgres://healthuser:Health@localhost:5432/porject2";
 const db = pg(conString);
 const app = express();
 // accept url encoded
