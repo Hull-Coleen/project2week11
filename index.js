@@ -155,10 +155,11 @@ function createUser(req, res) {
     const query = db.one('INSERT INTO person (name, password, user_name) VALUES ($1, $2, $3) RETURNING id',
 	[name, pass, username]) // returns promise
       .then((query)=> {
-        console.log("insert function person" + query)
-        res.status(200)
+        //console.log("insert function person" + query)
+        //res.status(200)
            //.json(query)
 		   id = query.id
+		   console.log(id);
       })
       .catch((err)=> {
           console.log(err)
