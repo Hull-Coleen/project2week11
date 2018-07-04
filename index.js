@@ -29,7 +29,7 @@ app.get('/getWeight', getWeight);
 app.get('/getUser', getUser);
 app.post('/signin', getUserName);
 app.get('/insert', insertData);
-app.post('/', createUser);
+app.post('/createUser', createUser);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 function getPulse(req, res) {
@@ -156,7 +156,7 @@ function createUser(req, res) {
 	[name, pass, username]) // returns promise
       .then((query)=> {
         //console.log("insert function person" + query)
-        //res.status(200)
+        res.status(200)
            //.json(query)
 		   id = query.id
 		   console.log(id);
