@@ -29,7 +29,7 @@ app.get('/getWeight', getWeight);
 app.get('/getUser', getUser);
 app.post('/signin', getUserName);
 app.get('/insert', insertData);
-app.post('/createUser', createUser);
+app.post('/', createUser);
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 function getPulse(req, res) {
