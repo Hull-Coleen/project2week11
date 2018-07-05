@@ -2,6 +2,8 @@ function getPulse(e) {
 	console.log("getPulse function");
     const id = document.querySelector('#input').value;
     fetch(`getPulse?id=${id}`)
+	/*const userId = id;
+	fetch(`getPulse`)*/
       .then((res)=>{
           return res.json()
       })
@@ -70,7 +72,7 @@ function weight(e) {
       })
 
 }
-function getUser(e) {
+/*function getUser(e) {
 	console.log("getweight function");
     const name = document.querySelector('#name').value;
 	const pass = document.querySelector('#pass').value;
@@ -89,7 +91,7 @@ function getUser(e) {
         }
       })
 
-}
+}*/
 function insert(e) {
 	console.log("insert function");
     const id = document.querySelector('#id').value;
@@ -115,44 +117,74 @@ function insert(e) {
       })
 
 }
-function createUser(e) {
+/*function test() {
+   console.log("test function called");	
+   const name = document.querySelector('#name1').value;
+   const pass = document.querySelector('#pass1').value;
+   const username = document.querySelector('#username').value;
+	 $.get('/createUser', { name : name, pass: pass , username: username }, function(data, stat) {
+	   console.log(data);
+	   console.log(stat);
+	   
+   });
+   /*$.post('/createUser', { name : name, pass: pass , username: username }, function(data, stat) {
+	   console.log(data);
+	   console.log(stat);
+	   
+   });*/
+/*};*/
+function create(e) {
 	console.log("insert function");
-    const id = document.querySelector('#name1').value;
-	const exercise = document.querySelector('#pass1').value;
-	const time = document.querySelector('#username').value;
-	
-    fetch(`createUser`)
+    const name = document.querySelector('#name1').value;
+	const pass = document.querySelector('#pass1').value;
+	const username = document.querySelector('#username').value;
+	var data = {name1 : name, pass1 : pass, username: username};
+    fetch(`/createUser`, { method: "POST", body: JSON.stringify(data), headers:{
+    'Content-Type': 'application/json'
+  }})
       .then((res)=>{
           return res.json()
+		  console.log(JSON.stringify(res.json));
       })
 	  .then(json =>{
-          const output = document.querySelector('#output');
+		  console.log("returning json" + JSON.stringify(json));
+          const output = document.querySelector('#greeting');
 		  if ("error" in json) {
             output.innerText = json.error;
           } 
 		    else {
           output.innerText = json.id;
+		  const userId = document.querySelector('#userId');
+		  id = json.id;
+		  userId.innerText = id;
         }
 		  
       })
 
 }
 function getUserName(e) {
-	console.log("signin function");
-    const name = document.querySelector('#name').value;
+	//console.log("signin function");
+    //const name = document.querySelector('#name').value;
+	//const pass = document.querySelector('#pass').value;
+	const name = document.querySelector('#name').value;
 	const pass = document.querySelector('#pass').value;
-    fetch(`signin`)
+	//const username = document.querySelector('#username').value;
+	var data = {name : name, pass : pass};
+    fetch(`signin`, { method: "POST", body: JSON.stringify(data), headers:{
+    'Content-Type': 'application/json'
+  }})
+    //fetch(`signin`)
       .then((res)=>{
           return res.json()
       })
       .then(json =>{
-          console.log("inside fetch" + json);
-          const output = document.querySelector('#output');
+          console.log("inside fetch" + JSON.stringify(json));
+          const output = document.querySelector('#greeting');
           if ("error" in json) {
             output.innerText = json.error;
           } 
 		  else {
-          output.innerText = json.user_name;
+          output.innerText = json.name;
         }
       })
 

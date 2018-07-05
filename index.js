@@ -1,11 +1,11 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
-const queries = require('./queries.js')
+//const queries = require('./queries.js')
 const url = require('url');
 var bodyParser = require('body-parser')
 const pg = require('pg-promise')({});
-var conString = process.env.DATABASE_URL || "postgres://healthuser:Health@localhost:5432/porject2";
+var conString = process.env.DATABASE_URL || "postgres://healthuser:Health@localhost:5432/project2";
 const db = pg(conString);
 const app = express();
 // accept url encoded
@@ -22,15 +22,14 @@ app.set('view engine', 'ejs');
 app.get('/', (req,res)=> {
     res.render('pages/index', {title: "home"})
 });
-
+app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 app.get('/getPulse', getPulse);
 app.get('/getExercise', getExercise);
 app.get('/getWeight', getWeight);
-app.get('/getUser', getUser);
-app.post('/signin', getUserName);
+//app.get('/getUser', getUser);
+app.post('/signin', getUser);
 app.get('/insert', insertData);
 app.post('/createUser', createUser);
-app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 function getPulse(req, res) {
 	var url_parts = url.parse(req.url, true);
@@ -83,7 +82,7 @@ function getWeight(req, res) {
              .json({"error":"Person does not exist."})
       })
 }
-function getUser(req, res) {
+/*function getUser(req, res) {
 	var url_parts = url.parse(req.url, true);
     var name = (url_parts.query.name);
 	var pass = (url_parts.query.pass);
@@ -101,15 +100,15 @@ function getUser(req, res) {
           res.status(400)
              .json({"error":"Person does not exist."})
       })
-}
-function getUserName(req, res) {
-
+}*/
+function getUser(req, res) {
+    console.log("inside get user");
 	var name = req.body.name;
 	var pass = req.body.pass;
     console.log(name);
 	console.log(pass);
     // query database
-    db.one('SELECT user_name FROM person WHERE name = $1 AND password = $2', [name, pass]) // returns promise
+    db.one('SELECT name FROM person WHERE user_name = $1 AND password = $2', [name, pass]) // returns promise
       .then((results)=> {
         console.log(results)
         res.status(200)
@@ -146,20 +145,18 @@ function insertData(req, res) {
       })
 }
 function createUser(req, res) {
+	console.log(req.body.name1 + req.body.name);
 	var name = req.body.name1;
 	var pass = req.body.pass1;
 	var username = req.body.username;
-    
+	console.log("createUser" + name + pass + username);
     // query database
-	
     const query = db.one('INSERT INTO person (name, password, user_name) VALUES ($1, $2, $3) RETURNING id',
 	[name, pass, username]) // returns promise
       .then((query)=> {
-        //console.log("insert function person" + query)
         res.status(200)
-           //.json(query)
-		   id = query.id
-		   console.log(id);
+          .json(query)
+		  console.log("createuser funct" + JSON.stringify(query));
       })
       .catch((err)=> {
           console.log(err)

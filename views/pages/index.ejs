@@ -7,20 +7,22 @@
 <body>
 
  <h1>Home Page</h1>
+ <div id="greeting" class="greeting"></div>
+ <p id="userId" ></p> 
  <p>Create a User</p>
- <form method="post" action="/createUser">
+ <!--  <form method="post" action="/createUser"> -->
  Name: <input type="name" class="name1" id="name1" name="name1"></input><br>
  Password: <input type="password" class="pass1" id="pass1" name="pass1"></input><br>
  User Name: <input type="text" class="username" id="username" name="username"></input><br>
- <input  type='submit' value='Create User'></input>
- </form>
+ <input  onclick="create()" type='submit' value='Create User'></input>
+ <!--</form> -->
  <p>Sign In</p>
- <form method="post" action="/signin">
+ <!-- <form method="post" action="/signin"> -->
  User Name: <input type="name" class="name" id="name" name="name"></input><br>
  Password: <input type="password" class="pass" id="pass" name="pass"></input><br>
- <input onclick='getUserName()' type="submit" value="Enter">
- </form>
- <button onclick='getUser()'>Get User</button><br>
+ <input onclick='getUserName()' type="submit" value="Enter"><br><br>
+ <!-- </form> -->
+ <!-- <button onclick='getUser()'>Get User</button><br>  -->
  Enter integer between 1 and 4 <input type="number" class="input" id="input"></input>
  <button onclick='getPulse()'>Get Pulse</button>
  <button onclick='exercise()'>Get Exercise</button>
