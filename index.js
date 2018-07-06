@@ -1,15 +1,13 @@
 const express = require('express')
 const path = require('path')
 const PORT = process.env.PORT || 5000
-//const queries = require('./queries.js')
 const url = require('url');
 var bodyParser = require('body-parser')
 const pg = require('pg-promise')({});
 var conString = process.env.DATABASE_URL || "postgres://healthuser:Health@localhost:5432/project2";
 const db = pg(conString);
 const app = express();
-// accept url encoded
-var id = 0;
+var id;
 app.use(bodyParser.urlencoded({
     extended: true
 }));
@@ -26,14 +24,14 @@ app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
 app.get('/getPulse', getPulse);
 app.get('/getExercise', getExercise);
 app.get('/getWeight', getWeight);
-//app.get('/getUser', getUser);
 app.post('/signin', getUser);
 app.get('/insert', insertData);
 app.post('/createUser', createUser);
 
 function getPulse(req, res) {
-	var url_parts = url.parse(req.url, true);
-    var id = parseInt(url_parts.query.id);
+	//var url_parts = url.parse(req.url, true);
+//    var id = parseInt(url_parts.query.id);
+     //var test = id;
     console.log(id);
     // query database
     db.any('SELECT pulse FROM health WHERE person_id = $1', [id]) // returns promise
@@ -49,8 +47,8 @@ function getPulse(req, res) {
       })
 }
 function getExercise(req, res) {
-	var url_parts = url.parse(req.url, true);
-    var id = parseInt(url_parts.query.id);
+	//var url_parts = url.parse(req.url, true);
+    //var id = parseInt(url_parts.query.id);
     console.log(id);
     // query database
     db.any('SELECT exercise, exercise_time FROM health WHERE person_id = $1', [id]) // returns promise
@@ -66,8 +64,8 @@ function getExercise(req, res) {
       })
 }
 function getWeight(req, res) {
-	var url_parts = url.parse(req.url, true);
-    var id = parseInt(url_parts.query.id);
+	//var url_parts = url.parse(req.url, true);
+    //var id = parseInt(url_parts.query.id);
     console.log(id);
     // query database
     db.any('SELECT weight FROM health WHERE person_id = $1', [id]) // returns promise
@@ -82,25 +80,7 @@ function getWeight(req, res) {
              .json({"error":"Person does not exist."})
       })
 }
-/*function getUser(req, res) {
-	var url_parts = url.parse(req.url, true);
-    var name = (url_parts.query.name);
-	var pass = (url_parts.query.pass);
-    console.log(name);
-	console.log(pass);
-    // query database
-    db.one('SELECT user_name FROM person WHERE name = $1 AND password = $2', [name, pass]) // returns promise
-      .then((results)=> {
-        console.log(results)
-        res.status(200)
-           .json(results)
-      })
-      .catch((err)=> {
-          console.log(err)
-          res.status(400)
-             .json({"error":"Person does not exist."})
-      })
-}*/
+
 function getUser(req, res) {
     console.log("inside get user");
 	var name = req.body.name;
@@ -108,11 +88,13 @@ function getUser(req, res) {
     console.log(name);
 	console.log(pass);
     // query database
-    db.one('SELECT name FROM person WHERE user_name = $1 AND password = $2', [name, pass]) // returns promise
+    db.one('SELECT name, id FROM person WHERE user_name = $1 AND password = $2', [name, pass]) // returns promise
       .then((results)=> {
         console.log(results)
         res.status(200)
            .json(results)
+		   id = results.id;
+		  console.log("getuser funct" + id);
       })
       .catch((err)=> {
           console.log(err)
@@ -121,14 +103,16 @@ function getUser(req, res) {
       })
 }
 function insertData(req, res) {
+	
 	var url_parts = url.parse(req.url, true);
-	var id = (url_parts.query.id);
+	//var id = (url_parts.query.id);
     var exercise = (url_parts.query.exercise);
 	var time = (url_parts.query.time);
 	var weight = (url_parts.query.weight);
 	var pulse = (url_parts.query.pulse);
 	var date = (url_parts.query.date);
-    
+	//var id = 
+    console.log("insert function" + id);
     // query database
 	
     const query = db.one('INSERT INTO health (person_id, exercise, exercise_time, weight, pulse, day_of_input) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id', 
@@ -137,6 +121,8 @@ function insertData(req, res) {
         console.log("insert function" + query)
         res.status(200)
            .json(query)
+		    //id = query.id;
+		  //console.log("insert funct" + JSON.stringify(query));
       })
       .catch((err)=> {
           console.log(err)
@@ -156,6 +142,7 @@ function createUser(req, res) {
       .then((query)=> {
         res.status(200)
           .json(query)
+		  id = query.id;
 		  console.log("createuser funct" + JSON.stringify(query));
       })
       .catch((err)=> {
@@ -164,3 +151,4 @@ function createUser(req, res) {
              .json({"error":"could not Create user account"})
       })
 }
+

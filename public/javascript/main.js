@@ -1,107 +1,119 @@
 function getPulse(e) {
 	console.log("getPulse function");
-    const id = document.querySelector('#input').value;
-    fetch(`getPulse?id=${id}`)
-	/*const userId = id;
-	fetch(`getPulse`)*/
+   // const id = document.querySelector('#input').value;
+    //fetch(`getPulse?id=${id}`)
+	//const userId = id;
+	fetch(`getPulse`)
       .then((res)=>{
           return res.json()
       })
       .then(json =>{
-          console.log("inside fetch" + json);
-          const output = document.querySelector('#output');
+		    const output = document.querySelector('#title')
           if ("error" in json) {
             output.innerText = json.error;
           } 
 		  else {
-          var string = json.map((item)=>{
-            return item.pulse; 
-          })
-          string = string.join(", ");
-          output.innerText = string;
-        }
+             pulseList(json);
+             output.innerText = "Pulse Results";
+          }
+		
       })
-
 }
 function exercise(e) {
-	var test = "";
 	console.log("getexercise function");
-    const id = document.querySelector('#input').value;
-    fetch(`getExercise?id=${id}`)
+    //const id = document.querySelector('#input').value;
+    //fetch(`getExercise?id=${id}`)
+	fetch(`getExercise`)
       .then((res)=>{
           return res.json()
       })
       .then(json =>{
-          console.log("inside fetch" + json);
-          const output = document.querySelector('#output');
+           const output = document.querySelector('#title')
           if ("error" in json) {
             output.innerText = json.error;
-          }
-		  
+          } 
 		  else {
-          var string = json.map((item)=>{
-			test = item.exercise + " " + item.exercise_time;
-            return test; 
-          })
-          string = string.join(", ");
-          output.innerText = string;
-        }
+             exerciseList(json);
+             output.innerText = "Exercise Results";
+          }
       })
 
 }
 function weight(e) {
 	console.log("getweight function");
-    const id = document.querySelector('#input').value;
-    fetch(`getWeight?id=${id}`)
+    //const id = document.querySelector('#input').value;
+    //fetch(`getWeight?id=${id}`)
+	fetch(`getWeight`)
       .then((res)=>{
           return res.json()
       })
       .then(json =>{
-          console.log("inside fetch" + json);
-          const output = document.querySelector('#output');
+          const output = document.querySelector('#title')
           if ("error" in json) {
             output.innerText = json.error;
           } 
 		  else {
-          var string = json.map((item)=>{
-            return item.weight; 
-          })
-          string = string.join(", ");
-          output.innerText = string;
-        }
+             weightList(json);
+             output.innerText = "Weight Results";
+          }
+		
       })
 
 }
-/*function getUser(e) {
-	console.log("getweight function");
-    const name = document.querySelector('#name').value;
-	const pass = document.querySelector('#pass').value;
-    fetch(`getuser?name=${name}&pass=${pass}`)
-      .then((res)=>{
-          return res.json()
-      })
-      .then(json =>{
-          console.log("inside fetch" + json);
-          const output = document.querySelector('#output');
-          if ("error" in json) {
-            output.innerText = json.error;
-          } 
-		  else {
-          output.innerText = json.user_name;
-        }
-      })
+function weightList(data){
+    var objs = data.map(item => {
+        return item.weight;
+    })
+    console.log(objs);
+    var div = document.querySelector('#health');
+	div.innerHTML = '';
+    objs.forEach(obj => {
+		var li = document.createElement("li");
+		li.appendChild(document.createTextNode(obj));
+        div.appendChild(li);
+    });
 
-}*/
+}
+function exerciseList(data){
+    var objs = data.map(item => {
+        return item.exercise + "  " + item.exercise_time;
+    })
+    console.log(objs);
+    var div = document.querySelector('#health');
+	div.innerHTML = '';
+    objs.forEach(obj => {
+		var li = document.createElement("li");
+		li.appendChild(document.createTextNode(obj));
+        div.appendChild(li);
+    });
+
+}
+function pulseList(data){
+    var objs = data.map(item => {
+        return item.pulse;
+    })
+    console.log(objs);
+    var div = document.querySelector('#health');
+	div.innerHTML = '';
+    objs.forEach(obj => {
+		var li = document.createElement("li");
+		li.appendChild(document.createTextNode(obj));
+        div.appendChild(li);
+    });
+
+}
+
 function insert(e) {
 	console.log("insert function");
-    const id = document.querySelector('#id').value;
+   // const id = document.querySelector('#id').value;
 	const exercise = document.querySelector('#exercise').value;
 	const time = document.querySelector('#time').value;
 	const weight = document.querySelector('#weight').value;
 	const pulse = document.querySelector('#pulse').value;
 	const date = document.querySelector('#date').value;
-	
-    fetch(`insert?id=${id}&exercise=${exercise}&time=${time}&weight=${weight}&pulse=${pulse}&date=${date}`)
+	//const userId = id;
+	fetch(`insert?exercise=${exercise}&time=${time}&weight=${weight}&pulse=${pulse}&date=${date}`)
+    //fetch(`insert?id=${id}&exercise=${exercise}&time=${time}&weight=${weight}&pulse=${pulse}&date=${date}`)
       .then((res)=>{
           return res.json()
       })
@@ -117,22 +129,7 @@ function insert(e) {
       })
 
 }
-/*function test() {
-   console.log("test function called");	
-   const name = document.querySelector('#name1').value;
-   const pass = document.querySelector('#pass1').value;
-   const username = document.querySelector('#username').value;
-	 $.get('/createUser', { name : name, pass: pass , username: username }, function(data, stat) {
-	   console.log(data);
-	   console.log(stat);
-	   
-   });
-   /*$.post('/createUser', { name : name, pass: pass , username: username }, function(data, stat) {
-	   console.log(data);
-	   console.log(stat);
-	   
-   });*/
-/*};*/
+
 function create(e) {
 	console.log("insert function");
     const name = document.querySelector('#name1').value;
@@ -163,17 +160,12 @@ function create(e) {
 
 }
 function getUserName(e) {
-	//console.log("signin function");
-    //const name = document.querySelector('#name').value;
-	//const pass = document.querySelector('#pass').value;
 	const name = document.querySelector('#name').value;
 	const pass = document.querySelector('#pass').value;
-	//const username = document.querySelector('#username').value;
 	var data = {name : name, pass : pass};
     fetch(`signin`, { method: "POST", body: JSON.stringify(data), headers:{
     'Content-Type': 'application/json'
   }})
-    //fetch(`signin`)
       .then((res)=>{
           return res.json()
       })
@@ -185,6 +177,9 @@ function getUserName(e) {
           } 
 		  else {
           output.innerText = json.name;
+		  id = json.id;
+		  console.log(id);
+		  
         }
       })
 

@@ -3,7 +3,9 @@
 <head>
   <% include ../partials/header.ejs %>
 </head>
-
+<script>
+var id;
+</script>
 <body>
 
  <h1>Home Page</h1>
@@ -22,20 +24,23 @@
  Password: <input type="password" class="pass" id="pass" name="pass"></input><br>
  <input onclick='getUserName()' type="submit" value="Enter"><br><br>
  <!-- </form> -->
- <!-- <button onclick='getUser()'>Get User</button><br>  -->
- Enter integer between 1 and 4 <input type="number" class="input" id="input"></input>
- <button onclick='getPulse()'>Get Pulse</button>
- <button onclick='exercise()'>Get Exercise</button>
- <button onclick='weight()'>Get Weight</button>
- 
+ <!-- <button onclick='getUser()'>Get User</button><br>  --> 
  <div id="output" class="output"></div><br><br>
- User id (1-4)<input type="text" class="id" id="id"></input>
+ <!-- <input type="text" class="id" id="id"></input> -->
  Exercise type<input type="text" class="exercise" id="exercise"></input>
  minutes spent exercising<input type="text" class="time" id="time"></input>
  Your current wieght<input type="text" class="weight" id="weight"></input>
  resting pulse rate (INT) <input type="text" class="pulse" id="pulse"></input>
  todays' date<input type="text" class="date" id="date"></input>
- <button onclick='insert()'>Enter Data</button>
+ <button onclick='insert()'>Enter Data</button><br><br>
+ <!--  <input type="number" class="input" id="input"></input> -->
+ <button onclick='getPulse()'>Get Pulse</button>
+ <button onclick='exercise()'>Get Exercise</button>
+ <button onclick='weight()'>Get Weight</button>
+ 
+ <div> <h2 id="title" ></h2><ul id="health"></ul></div>
+ 
+
 
 
 </body>
